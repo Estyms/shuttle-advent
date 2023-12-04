@@ -1,6 +1,7 @@
 mod day1;
+mod day4;
 
-use rocket::{catch, catchers, get, routes};
+use rocket::{get, routes};
 use rocket::http::Status;
 
 #[get("/")]
@@ -19,7 +20,8 @@ async fn main() -> shuttle_rocket::ShuttleRocket {
     let rocket = rocket::build()
         .mount("/", routes![index])
         .mount("/", routes![error])
-        .mount("/", routes![day1::task1]);
+        .mount("/1/", routes![day1::xorcube])
+        .mount("/4/", routes![day4::strength, day4::contest]);
 
     Ok(rocket.into())
 }
