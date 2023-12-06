@@ -1,5 +1,6 @@
 mod day1;
 mod day4;
+mod day6;
 
 use rocket::{get, routes};
 use rocket::http::Status;
@@ -21,7 +22,8 @@ async fn main() -> shuttle_rocket::ShuttleRocket {
         .mount("/", routes![index])
         .mount("/", routes![error])
         .mount("/1/", routes![day1::xorcube])
-        .mount("/4/", routes![day4::strength, day4::contest]);
+        .mount("/4/", routes![day4::strength, day4::contest])
+        .mount("/6/", routes![day6::elf]);
 
     Ok(rocket.into())
 }
