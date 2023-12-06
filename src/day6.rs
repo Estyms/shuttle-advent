@@ -8,7 +8,6 @@ fn regex_processing<'a>(haystack: &'a str, regex_str: &'a str) -> Vec<Match<'a>>
     let mut i = 0;
     let mut matches = vec![];
     while let Some(x) = regex.find_at(haystack, i) {
-        dbg!(x);
         matches.push(x);
         i = x.start() + 1;
     };
