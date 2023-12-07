@@ -5,8 +5,11 @@ edition = "2021"
 
 [dependencies]
 rocket = { version = "0.5.0", features = ["json"] }
-shuttle-rocket = "0.34.0"
-shuttle-runtime = "0.34.0"
+shuttle-rocket = "0.35.0"
+shuttle-runtime = "0.35.0"
 tokio = "1.26.0"
 serde = { version = "1.0.193", features = ["derive"] }
+serde_json = { version = "1.0.108" }
 regex = "1.10.2"
+http = "1.0.0"
+base64 = "0.21.5"
