@@ -20,5 +20,5 @@ pub async fn weight(id: i32) -> String {
 #[get("/drop/<id>")]
 pub async fn drop(id: i32) -> String {
     let weight = get_pokemon(id).await.weight;
-    String::from(format!("{}", weight * (9.825f64 * 10.0 * 2.0).sqrt()))
+    format!("{}", weight * (9.825f64 * 10.0 * 2.0).sqrt() / 10.0)
 }
