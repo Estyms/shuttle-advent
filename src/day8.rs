@@ -7,8 +7,7 @@ struct Pokemon {
 }
 
 async fn get_pokemon(id: i32) -> Pokemon {
-    let res = reqwest::get(format!("https://pokeapi.co/api/v2/pokemon/{}", id)).await.unwrap();
-    serde_json::from_str(res.text().await.unwrap().as_str()).unwrap()
+    reqwest::get(format!("https://pokeapi.co/api/v2/pokemon/{}", id)).await.unwrap().json().await.unwrap()
 }
 
 #[get("/weight/<id>")]

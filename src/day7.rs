@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap};
 use rocket::{get};
 use rocket::http::CookieJar;
 use base64::{Engine as _, engine::general_purpose};
@@ -30,10 +30,9 @@ fn decode_b64(b64: &str) -> String {
 }
 
 #[get("/decode")]
-pub fn decode(cookies: &CookieJar<'_>) -> Json<Unknown> {
+pub fn decode<'a>(cookies: &CookieJar<'a>) -> String {
     let recipe = cookies.get("recipe").unwrap().value();
-    let res : Unknown = serde_json::from_str(decode_b64(recipe).as_str()).unwrap();
-    Json::from(res)
+    dbg!(decode_b64(&recipe))
 }
 
 #[get("/bake")]
@@ -52,6 +51,9 @@ pub fn bake(cookies: &CookieJar<'_>) -> Json<Result> {
 
     res.cookies = recipe.keys().fold(u64::MAX, |min, k| {
         let (available, recipe) = (pantry.get(k), recipe.get(k).unwrap());
+        if *recipe == 0 {
+            return min
+        }
         match available {
             None => {0}
             Some(x) => {min.min(x / recipe)}
