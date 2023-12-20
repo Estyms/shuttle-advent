@@ -1,7 +1,6 @@
 use std::fs::File;
 use std::io::BufReader;
 use std::path::{Path, PathBuf};
-use image::{GenericImageView, ImageFormat};
 use rocket::fs::{NamedFile};
 use rocket::{Data, get, post};
 use rocket::http::ContentType;
@@ -20,6 +19,7 @@ pub async fn serve(path: PathBuf) -> Option<NamedFile> {
 
 #[post("/red_pixels", data="<data>")]
 pub async fn red_pixels(data: Data<'_>, content_type: &ContentType) -> Option<String> {
+    use image::{GenericImageView, ImageFormat};
     let options = MultipartFormDataOptions::with_multipart_form_data_fields(vec![
         MultipartFormDataField::file("image"),
     ]);
