@@ -3,6 +3,7 @@ name = "cch23-estym"
 version = "0.1.0"
 edition = "2021"
 
+
 [dependencies]
 rocket = { version = "0.5.0", features = ["json"] }
 shuttle-rocket = "0.35.0"
@@ -20,3 +21,7 @@ image = "0.24.7"
 chrono = "0.4.31"
 ulid = { version = "1.1.0" }
 uuid = { version = "1.6.1", features = ["v4"] }
+
+sqlx = { version = "0.7.3", features = ["default"]}
+rocket_db_pools = { version = "0.1.0", features = ["sqlx_sqlite"]}
+

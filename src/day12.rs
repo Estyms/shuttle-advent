@@ -1,9 +1,6 @@
-use chrono::{Date, Datelike, Local, NaiveDateTime, TimeZone, Utc};
+use chrono::{Datelike, Local, NaiveDateTime, TimeZone, Utc};
 use rocket::{get, post, State};
-use rocket::http::ext::IntoCollection;
-use rocket::http::private::cookie::Expiration::DateTime;
 use rocket::serde::json::Json;
-use rocket::time::format_description::Component::Weekday;
 use serde_derive::{Deserialize, Serialize};
 use ulid::{Ulid};
 use uuid::Uuid;
@@ -31,7 +28,7 @@ pub async fn ulids(data: Json<Vec<String>>) ->  Json<Vec<String>> {
 
 
 #[derive(Serialize, Deserialize)]
-struct UlidWeekdayResponse {
+pub struct UlidWeekdayResponse {
     #[serde(rename(serialize = "christmas eve"))]
     christmas_eve: usize,
     weekday: usize,
